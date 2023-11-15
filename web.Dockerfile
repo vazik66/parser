@@ -20,5 +20,5 @@ COPY ./src ./app/src
 WORKDIR /home/appuser/app
 USER appuser
 
-CMD ["python", "./src/web.py"]
+CMD [ "python", "./src/web/manage.py", "runserver", "0.0.0.0:8000" ]
 

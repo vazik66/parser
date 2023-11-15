@@ -6,6 +6,11 @@
 docker compose up -d
 ```
 
-## Usage
+## Create django superuser
 
-After starting go to localhost:5000/admin and add habr hubs urls and soon u'll see data 
+```sh
+docker exec -it habr_parser-web-1  python src/web/manage.py createsuperuser
+```
+## Go to admin and add hubs
+
+Go to localhost:8000/admin and add hubs to parse

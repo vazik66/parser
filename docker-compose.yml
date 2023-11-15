@@ -3,12 +3,22 @@ services:
     build:
       dockerfile: ./web.Dockerfile
     ports:
-      - "5000:5000"
+      - "8000:8000"
     env_file:
       - .env
     depends_on:
       - database
-    
+      - migration
+
+  migration:
+    build:
+      dockerfile: ./web.Dockerfile
+    command: python src/web/manage.py migrate
+    env_file:
+      - .env
+    depends_on:
+      - database
+
   parser:
     build:
       dockerfile: ./parser.Dockerfile
@@ -16,7 +26,7 @@ services:
       - .env
     depends_on:
       - database
-      - web
+      - migration
 
   database:
     image: postgres:13

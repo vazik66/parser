@@ -71,7 +71,10 @@ class ArticleRepository:
             )
             for a in articles
         ]
-        await self.db.executemany(q, args)
+        try:
+            await self.db.executemany(q, args)
+        except Exception as e:
+            print(e)
 
 
 class Scraper:
